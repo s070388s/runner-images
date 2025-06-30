@@ -10,6 +10,8 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'
+        paths:
+    - 'images/windows/**'
 
 defaults:
   run:
