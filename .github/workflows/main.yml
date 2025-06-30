@@ -1,0 +1,24 @@
+name: Trigger Windows19 CI Test
+run-name: Windows2019 - ${{ github.event.pull_request.title }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Windows_2019:
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-2019'
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'windows2019'
+    secrets: inherit
